@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Escape Studio | Premium Accommodation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c5a059;
+            --gold-light: #e2c285;
+            --dark: #0f0f0f;
+            --white: #ffffff;
+            --overlay: rgba(10, 10, 10, 0.75);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--white);
+        }
+
+        /* Navigație Superioară */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);
+            backdrop-filter: blur(2px);
+        }
+
+        .nav-btn {
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            padding: 10px 18px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(15, 15, 15, 0.7);
+        }
+
+            .nav-btn:hover {
+                background: var(--gold);
+                color: var(--dark);
+                border-color: var(--gold);
+                transform: translateY(-2px);
+            }
+
+        .main-wrapper {
+            background: linear-gradient(var(--overlay), var(--overlay)), url('background-photo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 140px 20px 80px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .brand-subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            margin: 0;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .header-line {
+            width: 100px;
+            height: 1px;
+            background: var(--gold);
+            margin: 35px auto;
+            opacity: 0.6;
+        }
+
+        /* SECȚIUNE STUDIOURI */
+        .studio-container {
+            display: flex;
+            gap: 60px;
+            max-width: 1600px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 120px;
+            padding-top: 40px;
+        }
+
+        .studio-wrapper {
+            text-align: center;
+        }
+
+        .studio-card {
+            position: relative;
+            width: 550px;
+            height: 700px;
+            overflow: hidden;
+            text-decoration: none;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            outline: 1px solid rgba(197, 160, 89, 0.1);
+            outline-offset: -20px;
+            display: block;
+        }
+
+            .studio-card:hover {
+                transform: translateY(-15px);
+                border-color: var(--gold);
+                outline: 1px solid var(--gold);
+            }
+
+        .card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 2s;
+            filter: brightness(0.5);
+        }
+
+        .studio-card:hover .card-image {
+            transform: scale(1.1);
+            filter: brightness(0.75);
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 40px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            z-index: 2;
+        }
+
+            .card-content h2 {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: 3.5rem;
+                margin: 0;
+                color: var(--white);
+                font-weight: 500;
+            }
+
+        .price-tag {
+            margin-top: 25px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            font-style: italic;
+            display: block;
+        }
+
+        /* SECȚIUNE FACILITĂȚI */
+        .amenities-section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 100px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(197, 160, 89, 0.08);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+        }
+
+        .amenity-category h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .amenity-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .amenity-category li {
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            font-weight: 200;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0.9;
+        }
+
+            .amenity-category li::before {
+                content: "✧";
+                color: var(--gold);
+                font-size: 0.8rem;
+            }
+
+        /* SECȚIUNE LOCAȚIE */
+        .maps-section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 80px auto;
+            text-align: center;
+            padding: 100px 20px;
+            border-top: 1px solid rgba(197, 160, 89, 0.15);
+        }
+
+        .address-box {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--white);
+            transition: all 0.4s;
+            padding: 40px;
+            border: 1px dashed rgba(197, 160, 89, 0.2);
+        }
+
+            .address-box:hover {
+                border-color: var(--gold);
+                background: rgba(197, 160, 89, 0.03);
+                transform: translateY(-5px);
+            }
+
+        /* WHATSAPP */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: #0a0a0a;
+            color: var(--gold);
+            padding: 18px 35px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            z-index: 1100;
+            text-transform: uppercase;
+            border: 1px solid var(--gold);
+            outline: 3px solid #0a0a0a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.5s forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 950px) {
+            .top-nav {
+                justify-content: center;
+                padding: 15px;
+                flex-wrap: wrap;
+            }
+
+            .nav-btn {
+                font-size: 0.6rem;
+                padding: 8px 12px;
+            }
+
+            .studio-card {
+                width: 90vw;
+                height: 600px;
+            }
+
+            .amenities-section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav fade-up">
+        <a href="#studiouri" class="nav-btn">Colecția noastră</a>
+        <a href="#facilitati" class="nav-btn">Facilități</a>
+        <a href="#locatie" class="nav-btn">Locație</a>
+    </nav>
+
+    <div class="main-wrapper">
+        <header class="fade-up">
+            <span class="brand-subtitle">Private Luxury Retreat</span>
+            <h1>Urban Escape Studio</h1>
+            <div class="header-line"></div>
+        </header>
+
+        <main id="studiouri" class="studio-container">
+            <div class="studio-wrapper fade-up" style="animation-delay: 0.2s;">
+                <a href="garsoniera1.html" class="studio-card">
+                    <img src="./images/g1-cover.jpg" alt="Studio I" class="card-image">
+                    <div class="card-content"><h2>Studio I</h2></div>
+                </a>
+                <span class="price-tag">210 lei / noapte</span>
+            </div>
+
+            <div class="studio-wrapper fade-up" style="animation-delay: 0.4s;">
+                <a href="garsoniera2.html" class="studio-card">
+                    <img src="./images/g2-cover.jpg" alt="Studio II" class="card-image">
+                    <div class="card-content"><h2>Studio II</h2></div>
+                </a>
+                <span class="price-tag">200 lei / noapte</span>
+            </div>
+        </main>
+
+        <section id="facilitati" class="amenities-section fade-up">
+            <h2 class="section-title">Cele mai apreciate facilități</h2>
+            <div class="amenities-grid">
+
+                <div class="amenity-category">
+                    <h3>Ideal pentru sejurul dvs.</h3>
+                    <ul>
+                        <li>Parcare gratuită (la proprietate)</li>
+                        <li>WiFi gratuit de mare viteză</li>
+                        <li>Camere pentru nefumători</li>
+                        <li>Camere de familie spațioase</li>
+                        <li>Aer condiţionat controlat individual</li>
+                        <li>Vedere panoramică spre oraș</li>
+                    </ul>
+                </div>
+
+                <div class="amenity-category">
+                    <h3>Bucătărie & Dining</h3>
+                    <ul>
+                        <li>Masă de luat masa elegantă</li>
+                        <li>Mașină de cafea & Selecție ceai</li>
+                        <li>Plită de gătit & Cuptor microunde</li>
+                        <li>Frigider & Prăjitor de pâine</li>
+                        <li>Ustensile complete de gătit</li>
+                        <li>Produse de curățenie incluse</li>
+                    </ul>
+                </div>
+
+                <div class="amenity-category">
+                    <h3>Confort & Baie</h3>
+                    <ul>
+                        <li>Garderobă / Dulap generos</li>
+                        <li>Facilități pentru călcat haine</li>
+                        <li>Hârtie igienică & Prosoape premium</li>
+                        <li>Articole de toaletă gratuite</li>
+                        <li>Uscător de păr profesional</li>
+                        <li>Duş cu design contemporan</li>
+                    </ul>
+                </div>
+
+                <div class="amenity-category">
+                    <h3>Tehnologie & Altele</h3>
+                    <ul>
+                        <li>TV cu ecran plat & Canale Cablu</li>
+                        <li>Șemineu ambiental</li>
+                        <li>Zonă de birou dedicată</li>
+                        <li>Maşină de spălat proprie</li>
+                        <li>Plasă de ţânţari & Încălzire</li>
+                        <li>Priză lângă pat</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <p style="text-align: center; margin-top: 60px; font-style: italic; opacity: 0.6; font-size: 0.85rem; letter-spacing: 1px;">
+                Personal vorbitor de Română și Engleză | Fumatul strict interzis în interior.
+            </p>
+        </section>
+
+        <section id="locatie" class="maps-section fade-up">
+            <h2 class="section-title">Unde ne găsiți</h2>
+            <a href="https://maps.app.goo.gl/R6CMp9c6GVVSLsdZA" target="_blank" class="address-box">
+                <span style="color: var(--gold); display: block; margin-bottom: 20px; font-size: 1.8rem;">📍</span>
+                <span style="font-weight: 200; letter-spacing: 2px; line-height: 1.8; display: block; font-size: 1.1rem;">
+                    Strada Splaiului Nr. 11, bl. 34L, sc. C, et. 4, ap. 59<br>
+                    100150 Ploiești, România
+                </span>
+                <span style="margin-top: 30px; display: block; color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 20px;">
+                    Navighează cu Google Maps
+                </span>
+            </a>
+        </section>
+    </div>
+
+    <a href="https://wa.me/40728345993" class="whatsapp-btn" target="_blank">
+        Solicită Rezervare
+    </a>
+
+</body>
+</html>

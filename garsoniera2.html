@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio II | Urban Escape Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark: #0f0f0f;
+            --white: #ffffff;
+            --overlay: rgba(10, 10, 10, 0.85);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(var(--overlay), var(--overlay)), url('background-photo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--white);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigație superioară */
+        nav {
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            position: sticky;
+            top: 0;
+            background: rgba(15, 15, 15, 0.9);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn {
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            border: 1px solid var(--gold);
+            padding: 10px 20px;
+            transition: all 0.3s;
+        }
+
+            .back-btn:hover {
+                background: var(--gold);
+                color: var(--dark);
+            }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+        }
+
+        /* Secțiune Intro */
+        .intro {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+            .intro h1 {
+                font-family: 'Cormorant Garamond', serif;
+                font-size: clamp(3rem, 7vw, 5rem);
+                margin: 0;
+                font-weight: 500;
+            }
+
+            .intro p {
+                font-weight: 200;
+                letter-spacing: 1px;
+                line-height: 1.8;
+                opacity: 0.8;
+                margin-top: 20px;
+            }
+
+        /* Galerie Masonry (Stil Mozaic Luxos) */
+        .gallery-container {
+            padding: 0 40px 100px 40px;
+            column-count: 3; /* 3 coloane pe desktop */
+            column-gap: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            margin-bottom: 20px;
+            break-inside: avoid;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+            .gallery-item img {
+                width: 100%;
+                display: block;
+                filter: brightness(0.8);
+                transition: all 0.6s ease;
+            }
+
+            .gallery-item:hover {
+                transform: scale(1.02);
+                border-color: var(--gold);
+                z-index: 10;
+            }
+
+                .gallery-item:hover img {
+                    filter: brightness(1);
+                }
+
+        /* WhatsApp Button (Refolosim stilul tau) */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: #0a0a0a;
+            color: var(--gold);
+            padding: 18px 35px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            z-index: 100;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: 1px solid var(--gold);
+            outline: 3px solid #0a0a0a;
+            box-shadow: 0 0 0 1px var(--gold), 0 20px 40px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.5s;
+        }
+
+            .whatsapp-btn:hover {
+                background: var(--gold);
+                color: #0a0a0a;
+            }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .gallery-container {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-container {
+                column-count: 1;
+                padding: 0 20px 100px 20px;
+            }
+
+            .intro h1 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Animație la scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn">← Înapoi</a>
+        <div class="nav-title">Urban Escape Studio</div>
+        <div style="width: 80px;"></div>
+    </nav>
+
+    <div class="intro">
+        <h1>Studio I</h1>
+        <div style="width: 60px; height: 1px; background: var(--gold); margin: 20px auto;"></div>
+        <p>O incursiune în rafinamentul urban. Spațiu generos, finisaje premium și o atmosferă creată pentru relaxare absolută.</p>
+    </div>
+
+    <main class="gallery-container" id="gallery">
+        <script>
+            const gallery = document.getElementById('gallery');
+            for (let i = 1; i <= 60; i++) {
+                const item = document.createElement('div');
+                item.className = 'gallery-item reveal';
+                item.innerHTML = `<img src="./images/g2-${i}.jpg" alt="Studio I Detaliu ${i}" loading="lazy">`;
+                gallery.appendChild(item);
+            }
+        </script>
+    </main>
+
+    <a href="https://wa.me/40728345993" class="whatsapp-btn" target="_blank">
+        Solicită Rezervare
+    </a>
+
+    <script>
+        // Funcție pentru animația de reveal la scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Rulăm o dată la început pentru a afișa primele poze
+        reveal();
+    </script>
+
+</body>
+</html>
